@@ -1,0 +1,27 @@
+[tool.poetry]
+name = "telegram-bot"
+version = "0.1.0"
+description = ""
+authors = ["Feoktistov Andrei"]
+readme = "README.md"
+packages = [{include = "tgbot"}]
+
+[tool.poetry.dependencies]
+python = "^3.8.1"
+asyncio = "^3.4.3"
+pymorphy2 = "^0.9.1"
+aiogram = "^2.25.1"
+environs = "^9.5.0"
+python-dotenv = "^1.0.0"
+requests = "^2.28.2"
+
+
+[tool.poetry.group.dev.dependencies]
+flake8 = "^6.0.0"
+
+[tool.poetry.scripts]
+tgbot-run = "tgbot.bot:main"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
