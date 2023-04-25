@@ -5,7 +5,7 @@ from aiogram.dispatcher.filters import Text
 from tgbot.weather.states import WeatherStatesGroup
 from tgbot.services.keyboards import get_cancel_cmd
 from tgbot.weather.api import get_request_link
-from tgbot.weather.city_case import  change_city_case
+from tgbot.weather.city_case import change_city_case
 
 
 DEGREE_SIGN = u'\N{DEGREE SIGN}'
@@ -40,7 +40,7 @@ async def send_weather(message: types.Message):
     changed_declension = change_city_case(city_name)
     wind_speed = content['wind']['speed']
     country = content['sys']['country']
-    text = (f'На данный момент в {changed_declension} ({country}) {weather_description}. '
+    text = (f'Сегодня в {changed_declension} ({country}) {weather_description}. '
             f'Температура воздуха составляет {current_temp} градусов по Цельсию '
             f'(ощущется как {feels_like}{DEGREE_SIGN}C) '
             f'Температура колеблется между {temp_min} и {temp_max}{DEGREE_SIGN}С. '

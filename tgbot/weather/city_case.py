@@ -3,8 +3,8 @@ import pymorphy2 as pymorphy2
 
 morph = pymorphy2.MorphAnalyzer()
 
-
-def change_declension(city_name: str) -> str:
+'''Изменяет падеж переданного города и возвращает название с заглавной буквы (или букв)'''
+def change_city_case(city_name: str) -> str:
     split_by_space = city_name.split(' ')
     try:
         changed_declension = ' '.join(
