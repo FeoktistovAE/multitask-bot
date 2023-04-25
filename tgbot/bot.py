@@ -9,7 +9,8 @@ from tgbot.weather.handlers import register_start_weather, register_send_weather
 from tgbot.exchange_rates.handlers import register_start_exchange_rates, \
     register_get_convert_to_value, register_get_convert_from_value, register_get_count
 from tgbot.cute_animals.handlers import register_start_animal_picture
-from tgbot.polls.handlers import register_start_poll, register_get_chat_id, register_get_question, register_send_poll
+from tgbot.polls.handlers import register_start_poll, register_get_chat_id, \
+    register_get_question, register_send_poll
 from tgbot.config import load_config
 from tgbot.services.setting_commands import set_default_commands
 
@@ -40,7 +41,7 @@ async def set_all_default_commands(bot: Bot):
 config = load_config(".env")
 
 bot = Bot(
-    token = config.tg_bot.token,
+    token=config.tg_bot.token,
     parse_mode='HTML',
 )
 
@@ -53,7 +54,7 @@ async def main():
         format=u'%(filename)s:%(lineno)d #%(levelname)-8s [%(asctime)s] - %(name)s - %(message)s',
     )
     logger.info("Starting bot")
-   
+
     dp = Dispatcher(bot, storage=storage)
 
     register_all_handlers(dp)

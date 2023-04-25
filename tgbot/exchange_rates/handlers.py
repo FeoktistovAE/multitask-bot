@@ -17,13 +17,13 @@ async def start_exchange_rates(message: types.Message) -> None:
 
 
 def register_start_exchange_rates(dp: Dispatcher):
-    dp.register_message_handler(start_exchange_rates, Text(equals="Узнать курс"), state=None),
+    dp.register_message_handler(start_exchange_rates, Text(equals="Узнать курс валют"), state=None),
 
 
 async def get_convert_from_value(message: types.Message, state: FSMContext):
     async with state.proxy() as data:
         data["from_currency"] = message.text
-    
+
     await CurrencyStatesGroup.next()
     await message.reply(
         "Выберите валюту, в которую вы хотите конвертировать",
@@ -32,7 +32,10 @@ async def get_convert_from_value(message: types.Message, state: FSMContext):
 
 
 def register_get_convert_from_value(dp: Dispatcher):
-    dp.register_message_handler(get_convert_from_value, state=CurrencyStatesGroup.convert_from_state)
+    dp.register_message_handler(
+        get_convert_from_value,
+        state=CurrencyStatesGroup.convert_from_state,
+    )
 
 
 async def get_convert_to_value(message: types.Message, state: FSMContext):
@@ -56,13 +59,15 @@ async def get_count(message: types.Message, state: FSMContext):
         to_currency = data["to_currency"]
         from_currency = data["from_currency"]
 
-
-    convertation_data = json.loads(get_convertation_data(to_currency=to_currency, from_currency=from_currency, amount=amount))
+    convertation_data = json.loads(
+        get_convertation_data(to_currency=to_currency, from_currency=from_currency, amount=amount)
+    )
     exchange_rate = convertation_data["info"]["rate"]
     result = convertation_data['result']
 
     await message.answer(
-        f"Сумма конвертации {amount} {from_currency} в {to_currency} составит: {result} {to_currency}\n"
+        f"Сумма конвертации {amount} {from_currency} в {to_currency} "
+        f"составит: {result} {to_currency}\n"
         f"Текущий обменный курс валют составляет 1 {from_currency} = {exchange_rate} {to_currency}",
         reply_markup=get_actions_keyboard()
     )

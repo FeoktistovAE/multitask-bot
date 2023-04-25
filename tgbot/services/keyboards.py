@@ -4,7 +4,7 @@ from aiogram.types import ReplyKeyboardMarkup, KeyboardButton
 def get_actions_keyboard() -> ReplyKeyboardMarkup:
     kb = ReplyKeyboardMarkup(resize_keyboard=True)
     kb.add(KeyboardButton("Узнать погоду"))
-    kb.add(KeyboardButton("Узнать курс"))
+    kb.add(KeyboardButton("Узнать курс валют"))
     kb.add(KeyboardButton("Получить милую фотографию животного"))
     kb.add(KeyboardButton("Создать опрос"))
     return kb

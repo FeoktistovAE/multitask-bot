@@ -11,7 +11,7 @@ from tgbot.services.keyboards import get_cancel_cmd, get_actions_keyboard
 config = load_config(".env")
 
 bot = Bot(
-    token = config.tg_bot.token,
+    token=config.tg_bot.token,
     parse_mode='HTML',
 )
 
@@ -61,20 +61,20 @@ async def send_poll(message: types.Message, state: FSMContext) -> None:
     async with state.proxy() as data:
         chat_id = data["chat_id"]
         question = data["question"]
-    
+
     try:
         await bot.send_poll(
             chat_id=chat_id,
             question=question,
             options=options,
         )
-    except:
+    except Exception:
         message.answer(
             "Что-то пошло не по плану",
             reply_markup=get_actions_keyboard(),
         )
         return
-    
+
     await state.finish()
     await message.answer(
         "Опрос отправлен",
@@ -83,4 +83,4 @@ async def send_poll(message: types.Message, state: FSMContext) -> None:
 
 
 def register_send_poll(dp: Dispatcher) -> None:
-    dp.register_message_handler(send_poll, state = PollStatesGroup.send_poll)
+    dp.register_message_handler(send_poll, state=PollStatesGroup.send_poll)

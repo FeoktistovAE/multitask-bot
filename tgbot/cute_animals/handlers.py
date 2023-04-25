@@ -10,4 +10,8 @@ async def start_animal_picture(message: types.Message) -> None:
 
 
 def register_start_animal_picture(dp: Dispatcher):
-    dp.register_message_handler(start_animal_picture, Text(equals="Получить милую фотографию животного"), state=None),
+    dp.register_message_handler(
+        start_animal_picture,
+        Text(equals="Получить милую фотографию животного"),
+        state=None,
+    )
