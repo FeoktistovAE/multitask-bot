@@ -19,6 +19,7 @@ params = {
 }
 
 
-def get_animal_url() -> str:
+def get_animal_photo_url() -> str:
     response = requests.get(URL, headers=headers, params=params)
-    return json.loads(response.content)["urls"]["regular"]
+    animal_photo_url = json.loads(response.content)["urls"]["regular"]
+    return animal_photo_url

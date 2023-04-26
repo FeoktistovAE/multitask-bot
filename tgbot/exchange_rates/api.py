@@ -15,4 +15,5 @@ def get_convertation_data(to_currency: str, from_currency: str, amount: str):
         f"https://api.apilayer.com/exchangerates_data/convert"
         f"?to={to_currency}&from={from_currency}&amount={amount}"
     )
-    return requests.request("GET", url, headers=headers, data=payload).content
+    convertation_data = requests.request("GET", url, headers=headers, data=payload).content
+    return convertation_data

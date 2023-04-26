@@ -29,7 +29,8 @@ async def send_weather(message: types.Message):
         city_name = weather_data['name']
     except KeyError:
         await message.answer(
-            'Прости, но я не знаю такого города. Попробуй еще раз!'
+            'Прости, но я не знаю такого города. Попробуй еще раз!',
+            reply_markup=get_cancel_cmd(),
         )
     weather_description = weather_data['weather'][0]['description']
     temp_min = weather_data['main']['temp_min']
